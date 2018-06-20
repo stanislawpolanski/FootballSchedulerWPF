@@ -30,4 +30,4 @@ This document sketches up the project. Detailed roadmaps with checklists
 
 ## Project evaluation
 
-+ [ ] Possible directions of developement
++ [ ] Possible directions of developement?
