@@ -4,7 +4,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 
 ## Database
 
-+ [ ] Project initiation
++ [x] Project initiation
 + [ ] Project design
 + [ ] Tables developement
 + [ ] League table function developement
