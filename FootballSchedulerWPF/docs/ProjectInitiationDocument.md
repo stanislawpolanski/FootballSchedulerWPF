@@ -26,7 +26,7 @@ In the end all parts will be connected.
 
 ## Project control and scheduling
 The project will have a roadmap that briefly sketches its design. Each part of the project
-will have its own specific roadmap.
+will have its own ~~specific roadmap~~ spefication/sketch.
 
 ## Quality control
 Quality will be controlled by tests.
