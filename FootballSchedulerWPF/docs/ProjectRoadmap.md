@@ -6,7 +6,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 
 + [x] Project initiation
 + [x] Project design
-+ [ ] Tables developement
++ [x] Tables developement
 + [ ] League table function developement
 + [ ] Data seed
 + [ ] Testing
