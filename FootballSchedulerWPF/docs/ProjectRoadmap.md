@@ -5,12 +5,12 @@ This document sketches up the project. Detailed roadmaps with checklists
 ## Database
 
 + [x] Project initiation
-+ [ ] Project design
++ [x] Project design
 + [ ] Tables developement
 + [ ] League table function developement
 + [ ] Data seed
-+ [ ] Deployement
 + [ ] Testing
++ [ ] Final deployement
 
 ## Algorithms
 
@@ -19,6 +19,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Flexible design (possibility to implement other scheduling methods)
 + [ ] Round robin scheduling implemenetation
 + [ ] Unit testing
++ [ ] Final compilation
 
 ## Windows application
 
@@ -27,6 +28,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Windows design
 + [ ] Binding windows to database using Entity
 + [ ] Testing
++ [ ] Final compilation
 
 ## Project evaluation
 
