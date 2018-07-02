@@ -8,7 +8,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [x] Project design
 + [x] Tables developement
 + [x] Data seed
-+ [ ] Functions developement
++ [x] Basic function/view developement
 + [ ] League table function developement
 + [ ] Testing
 + [ ] Final deployement
@@ -34,3 +34,4 @@ This document sketches up the project. Detailed roadmaps with checklists
 ## Project evaluation
 
 + [ ] Possible directions of developement?
++ [ ] GIS app to read the team's regions from shp using cities names
