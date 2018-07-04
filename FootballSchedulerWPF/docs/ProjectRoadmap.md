@@ -9,9 +9,10 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [x] Tables developement
 + [x] Data seed
 + [x] Basic function/view developement
-+ [ ] League table function developement
++ [x] League table function developement
 + [ ] Testing
 + [ ] Final deployement
++ [ ] Readme (overview)
 
 ## Algorithms
 
@@ -21,6 +22,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Round robin scheduling implemenetation
 + [ ] Unit testing
 + [ ] Final compilation
++ [ ] Readme (overview)
 
 ## Windows application
 
@@ -30,6 +32,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Binding windows to database using Entity
 + [ ] Testing
 + [ ] Final compilation
++ [ ] Readme (overview)
 
 ## Project evaluation
 
