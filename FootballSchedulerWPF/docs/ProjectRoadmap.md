@@ -33,6 +33,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Testing
 + [ ] Final compilation
 + [ ] Readme (overview)
++ [ ] Project overview
 
 ## Project evaluation
 
