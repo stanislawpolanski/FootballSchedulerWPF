@@ -28,14 +28,15 @@ FootballSchedulerDLL
 ## Windows application
 FootballSchedulerWPF (this)
 + [x] Project initiation
-+ [ ] Project design
++ [x] Generating DB first models
++ [x] Project design
 + [ ] Windows design
 + [ ] Binding windows to database using Entity
 + [ ] Testing
 + [ ] Final compilation
 + [ ] Readme (overview)
 + [ ] Code clean-up
-+ [ ] Project overview
++ [ ] Whole project overview
 
 ## Project evaluation
 
