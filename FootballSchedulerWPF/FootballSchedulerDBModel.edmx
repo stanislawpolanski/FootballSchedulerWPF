@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FootballSchedulerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Leagues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeagueId" Type="int" Nullable="false" />
+          <Property Name="TimeOfPlay" Type="datetime" Nullable="false" />
+          <Property Name="HomeTeamId" Type="int" Nullable="false" />
+          <Property Name="AwayTeamId" Type="int" Nullable="false" />
+          <Property Name="HomeScore" Type="int" />
+          <Property Name="AwayScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Matches_AwayTeam_To_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="AwayTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_HomeTeam_To_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="HomeTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_To_Leagues">
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teams_To_Districts">
+          <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetLeagueStandingsByLeagueId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LeagueId" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Player" Type="int" Nullable="false" />
+                <Property Name="TeamName" Type="varchar" MaxLength="50" />
+                <Property Name="Played" Type="int" />
+                <Property Name="Points" Type="int" />
+                <Property Name="GoalsFor" Type="int" />
+                <Property Name="GoalsAgainst" Type="int" />
+                <Property Name="GoalsDifference" Type="int" />
+                <Property Name="Won" Type="int" />
+                <Property Name="Drawn" Type="int" />
+                <Property Name="Lost" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetMatchesByLeagueId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LeagueId" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TimeOfPlay" Type="datetime" />
+                <Property Name="HomeTeamId" Type="int" />
+                <Property Name="AwayTeamId" Type="int" />
+                <Property Name="HomeScore" Type="int" />
+                <Property Name="AwayScore" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="FootballSchedulerDBModelStoreContainer">
+          <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Matches_AwayTeam_To_Teams" Association="Self.FK_Matches_AwayTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_HomeTeam_To_Teams" Association="Self.FK_Matches_HomeTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_To_Leagues" Association="Self.FK_Matches_To_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teams_To_Districts" Association="Self.FK_Teams_To_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FootballSchedulerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="GetLeagueStandingsByLeagueId_Result">
+          <Property Name="Player" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Played" Type="Int32" />
+          <Property Name="Points" Type="Int32" />
+          <Property Name="GoalsFor" Type="Int32" />
+          <Property Name="GoalsAgainst" Type="Int32" />
+          <Property Name="GoalsDifference" Type="Int32" />
+          <Property Name="Won" Type="Int32" />
+          <Property Name="Drawn" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+        </ComplexType>
+        <ComplexType Name="GetMatchesByLeagueId_Result">
+          <Property Name="TimeOfPlay" Type="DateTime" />
+          <Property Name="HomeTeamId" Type="Int32" />
+          <Property Name="AwayTeamId" Type="Int32" />
+          <Property Name="HomeScore" Type="Int32" />
+          <Property Name="AwayScore" Type="Int32" />
+        </ComplexType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Teams_To_Districts" FromRole="Districts" ToRole="Teams" />
+        </EntityType>
+        <EntityType Name="Leagues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_To_Leagues" FromRole="Leagues" ToRole="Matches" />
+        </EntityType>
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+          <Property Name="TimeOfPlay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
+          <Property Name="HomeScore" Type="Int32" />
+          <Property Name="AwayScore" Type="Int32" />
+          <NavigationProperty Name="Leagues" Relationship="Self.FK_Matches_To_Leagues" FromRole="Matches" ToRole="Leagues" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Matches_AwayTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
+          <NavigationProperty Name="Teams1" Relationship="Self.FK_Matches_HomeTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Districts" Relationship="Self.FK_Teams_To_Districts" FromRole="Teams" ToRole="Districts" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_AwayTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
+          <NavigationProperty Name="Matches1" Relationship="Self.FK_Matches_HomeTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
+        </EntityType>
+        <Association Name="FK_Teams_To_Districts">
+          <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+          <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teams">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_To_Leagues">
+          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leagues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="LeagueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_AwayTeam_To_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="AwayTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Matches_HomeTeam_To_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matches">
+              <PropertyRef Name="HomeTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballSchedulerDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Districts" EntityType="Self.Districts" />
+          <EntitySet Name="Leagues" EntityType="Self.Leagues" />
+          <EntitySet Name="Matches" EntityType="Self.Matches" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" />
+          <AssociationSet Name="FK_Teams_To_Districts" Association="Self.FK_Teams_To_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_To_Leagues" Association="Self.FK_Matches_To_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_AwayTeam_To_Teams" Association="Self.FK_Matches_AwayTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_HomeTeam_To_Teams" Association="Self.FK_Matches_HomeTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <FunctionImport Name="GetLeagueStandingsByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetLeagueStandingsByLeagueId_Result)">
+            <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMatchesByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetMatchesByLeagueId_Result)">
+            <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FootballSchedulerDBModelStoreContainer" CdmEntityContainer="FootballSchedulerDBContext">
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Districts">
+              <MappingFragment StoreEntitySet="Districts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leagues">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Leagues">
+              <MappingFragment StoreEntitySet="Leagues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Matches">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="TimeOfPlay" ColumnName="TimeOfPlay" />
+                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
+                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="AwayScore" ColumnName="AwayScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Teams">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="FootballSchedulerDBModel.Store.GetLeagueStandingsByLeagueId" FunctionImportName="GetLeagueStandingsByLeagueId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballSchedulerDBModel.GetLeagueStandingsByLeagueId_Result">
+                <ScalarProperty Name="Player" ColumnName="Player" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="Played" ColumnName="Played" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="GoalsFor" ColumnName="GoalsFor" />
+                <ScalarProperty Name="GoalsAgainst" ColumnName="GoalsAgainst" />
+                <ScalarProperty Name="GoalsDifference" ColumnName="GoalsDifference" />
+                <ScalarProperty Name="Won" ColumnName="Won" />
+                <ScalarProperty Name="Drawn" ColumnName="Drawn" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="FootballSchedulerDBModel.Store.GetMatchesByLeagueId" FunctionImportName="GetMatchesByLeagueId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballSchedulerDBModel.GetMatchesByLeagueId_Result">
+                <ScalarProperty Name="TimeOfPlay" ColumnName="TimeOfPlay" />
+                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
+                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="AwayScore" ColumnName="AwayScore" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
