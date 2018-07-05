@@ -1,9 +1,8 @@
 ﻿# Project roadmap
-This document sketches up the project. Detailed roadmaps with checklists
- are included in each of the parts.
+This is the project roadmap.
 
 ## Database
-
+FootballSchedulerDB
 + [x] Project initiation
 + [x] Project design
 + [x] Tables developement
@@ -12,20 +11,22 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [x] League table function developement
 + [x] Testing
 + [x] Final deployement
++ [ ] Code clean-up
 + [ ] Readme (overview)
 
 ## Algorithms
-
-+ [ ] Project initiation
+FootballSchedulerDLL
++ [x] Project initiation
 + [ ] Project design
 + [ ] Flexible design (possibility to implement other scheduling methods)
 + [ ] Round robin scheduling implemenetation
 + [ ] Unit testing
 + [ ] Final compilation
++ [ ] Code clean-up
 + [ ] Readme (overview)
 
 ## Windows application
-
+FootballSchedulerWPF (this)
 + [x] Project initiation
 + [ ] Project design
 + [ ] Windows design
@@ -33,6 +34,7 @@ This document sketches up the project. Detailed roadmaps with checklists
 + [ ] Testing
 + [ ] Final compilation
 + [ ] Readme (overview)
++ [ ] Code clean-up
 + [ ] Project overview
 
 ## Project evaluation
