@@ -11,14 +11,14 @@ FootballSchedulerDB
 + [x] League table function developement
 + [x] Testing
 + [x] Final deployement
-+ [ ] Code clean-up
++ [x] Code clean-up
 + [ ] Readme (overview)
 
 ## Algorithms
 FootballSchedulerDLL
 + [x] Project initiation
-+ [ ] Project design
-+ [ ] Flexible design (possibility to implement other scheduling methods)
++ [x] Project design
++ [x] Flexible design (possibility to implement other scheduling methods)
 + [ ] Round robin scheduling implemenetation
 + [ ] Unit testing
 + [ ] Final compilation
