@@ -19,7 +19,7 @@ FootballSchedulerDLL
 + [x] Project initiation
 + [x] Project design
 + [x] Flexible design (possibility to implement other scheduling methods)
-+ [ ] Round robin scheduling implemenetation
++ [x] Round robin scheduling implemenetation
 + [ ] Unit testing
 + [ ] Final compilation
 + [ ] Code clean-up
