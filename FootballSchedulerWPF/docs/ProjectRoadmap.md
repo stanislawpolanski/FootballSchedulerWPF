@@ -21,10 +21,11 @@ FootballSchedulerDLL
 + [x] Round robin scheduling implemenetation
 + [x] Design tests (arrange-act-assert)
 + [ ] Tests developement
-+ [ ] Code coverage tests
++ [ ] Code coverage test
 + [ ] Testing
 + [ ] Final compilation
-+ [ ] Code clean-up
++ [ ] DLL code clean-up
++ [ ] Tests code clean-up
 + [ ] Readme (overview)
 
 ## Windows application
