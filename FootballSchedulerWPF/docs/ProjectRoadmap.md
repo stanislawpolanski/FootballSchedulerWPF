@@ -18,9 +18,10 @@ FootballSchedulerDB
 FootballSchedulerDLL
 + [x] Project initiation
 + [x] Project design
-+ [x] Flexible design (possibility to implement other scheduling methods)
 + [x] Round robin scheduling implemenetation
-+ [ ] Design tests
++ [x] Design tests (arrange-act-assert)
++ [ ] Tests developement
++ [ ] Code coverage tests
 + [ ] Testing
 + [ ] Final compilation
 + [ ] Code clean-up
