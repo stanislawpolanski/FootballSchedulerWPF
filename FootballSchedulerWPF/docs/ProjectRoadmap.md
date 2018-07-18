@@ -20,7 +20,7 @@ FootballSchedulerDLL
 + [x] Project design
 + [x] Round robin scheduling implemenetation
 + [x] Design tests (arrange-act-assert)
-+ [ ] Tests developement
++ [x] Tests developement
 + [ ] Code coverage test
 + [ ] Testing
 + [ ] Final compilation
