@@ -38,7 +38,7 @@ FootballSchedulerWPF (this)
 + [ ] Final compilation
 + [ ] Readme (overview)
 + [ ] Code clean-up
-+ [ ] Whole project overview
++ [ ] Whole project overview (readme)
 
 ## Project evaluation
 

@@ -133,6 +133,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FootballSchedulerDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="docs\DesiredWindowFunctionality.md" />
     <None Include="FootballSchedulerDBModel.edmx.diagram">
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
     </None>
