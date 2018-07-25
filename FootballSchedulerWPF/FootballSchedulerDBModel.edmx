@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FootballSchedulerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FootballSchedulerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Districts">
           <Key>
             <PropertyRef Name="Id" />
@@ -117,6 +117,8 @@
                 <Property Name="AwayTeamId" Type="int" />
                 <Property Name="HomeScore" Type="int" />
                 <Property Name="AwayScore" Type="int" />
+                <Property Name="HomeTeamName" Type="varchar" MaxLength="50" />
+                <Property Name="AwayTeamName" Type="varchar" MaxLength="50" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -143,8 +145,7 @@
             <End Role="Teams" EntitySet="Teams" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FootballSchedulerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -280,10 +281,10 @@
             <End Role="Matches" EntitySet="Matches" />
           </AssociationSet>
           <FunctionImport Name="GetLeagueStandingsByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetLeagueStandingsByLeagueId_Result)">
-            <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetMatchesByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetMatchesByLeagueId_Result)">
-            <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
