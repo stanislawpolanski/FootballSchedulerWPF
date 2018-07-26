@@ -18,5 +18,7 @@ namespace FootballSchedulerWPF
         public Nullable<int> AwayTeamId { get; set; }
         public Nullable<int> HomeScore { get; set; }
         public Nullable<int> AwayScore { get; set; }
+        public string HomeTeamName { get; set; }
+        public string AwayTeamName { get; set; }
     }
 }
