@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="FootballScheduler" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="MenuBarRow" Height="22"/>
+            <RowDefinition x:Name="DataBarRow"/>
+            <RowDefinition x:Name="StatusBarRow" Height="25"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="TopMenuBar">
+            <MenuItem Header="File">
+                <MenuItem Header="Do nothing"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar x:Name="BottomStatusBar" Grid.Row="2"/>
+        <Label Content="Not active yet" VerticalAlignment="Top" Grid.Row="2"/>
     </Grid>
 </Window>
