@@ -34,6 +34,7 @@ FootballSchedulerWPF (this)
 + [x] Project design
 + [ ] Windows design
 + [ ] Binding windows to database using Entity
++ [ ] Entity data validation?
 + [ ] Testing
 + [ ] Final compilation
 + [ ] Readme (overview)
