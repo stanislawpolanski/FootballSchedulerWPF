@@ -1,5 +1,5 @@
 ﻿# Project roadmap
-This is the project roadmap.
+This is the project roadmap. The project will use Entity Framework database first approach.
 
 ## Database
 FootballSchedulerDB
@@ -32,6 +32,7 @@ FootballSchedulerWPF (this)
 + [x] Project initiation
 + [x] Generating DB first models
 + [x] Project design
++ [ ] Entity-library adapters
 + [ ] Windows design
 + [ ] Binding windows to database using Entity
 + [ ] Entity data validation?

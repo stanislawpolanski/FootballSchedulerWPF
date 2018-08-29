@@ -127,6 +127,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="datasources\Districts3.datasource" />
     <None Include="docs\ProjectInitiationDocument.md" />
     <None Include="docs\ProjectRoadmap.md" />
     <EntityDeploy Include="FootballSchedulerDBModel.edmx">
@@ -134,14 +135,21 @@
       <LastGenOutput>FootballSchedulerDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="docs\DesiredWindowFunctionality.md" />
+    <None Include="datasources\FootballSchedulerDBContext3.datasource" />
     <None Include="FootballSchedulerDBModel.edmx.diagram">
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
     </None>
+    <None Include="datasources\GetLeagueStandingsByLeagueId_Result3.datasource" />
+    <None Include="datasources\GetMatchesByLeagueId_Result5.datasource" />
+    <None Include="datasources\Leagues3.datasource" />
+    <None Include="datasources\MainWindow3.datasource" />
+    <None Include="datasources\Matches3.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="datasources\Teams3.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -161,5 +169,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

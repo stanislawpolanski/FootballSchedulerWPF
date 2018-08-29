@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FootballSchedulerWPF
 {
     /// <summary>
@@ -20,9 +22,38 @@ namespace FootballSchedulerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FootballSchedulerDBContext fsEntities = new FootballSchedulerDBContext();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource getMatchesByLeagueId_ResultViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("getMatchesByLeagueId_ResultViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // getMatchesByLeagueId_ResultViewSource.Source = [generic data source]
+
+
+            System.Windows.Data.CollectionViewSource leaguesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("leaguesViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // leaguesViewSource.Source = [generic data source]
+            this.fsEntities.Leagues.Load();
+            leaguesViewSource.Source = this.fsEntities.Leagues.Local.ToList();
+
+
+            System.Windows.Data.CollectionViewSource matchesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("matchesViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // matchesViewSource.Source = [generic data source]
+            fsEntities.Matches.Load();
+            matchesViewSource.Source = fsEntities.Matches.Local;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            fsEntities.SaveChanges();
         }
     }
 }

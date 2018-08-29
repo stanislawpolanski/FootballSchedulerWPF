@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballSchedulerWPF"
         mc:Ignorable="d"
-        Title="FootballScheduler" Height="450" Width="800">
+        Title="FootballScheduler" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="getMatchesByLeagueId_ResultViewSource" d:DesignSource="{d:DesignInstance {x:Type local:GetMatchesByLeagueId_Result}, CreateList=True}"/>
+        <CollectionViewSource x:Key="leaguesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Leagues}, CreateList=True}"/>
+        <CollectionViewSource x:Key="matchesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Matches}, CreateList=True}"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="MenuBarRow" Height="22"/>
@@ -22,5 +27,49 @@
         </Menu>
         <StatusBar x:Name="BottomStatusBar" Grid.Row="2"/>
         <Label Content="Not active yet" VerticalAlignment="Top" Grid.Row="2"/>
+        <Grid x:Name="DisplayGrid" Grid.Row="1" DataContext="{StaticResource getMatchesByLeagueId_ResultViewSource}">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="SelectionRow" Height="22"/>
+                <RowDefinition x:Name="TableRow"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Load this league" HorizontalAlignment="Left" Width="100" Margin="224,0,0,0"/>
+            <Grid x:Name="grid1" DataContext="{StaticResource leaguesViewSource}" HorizontalAlignment="Left" Margin="86,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <ComboBox x:Name="nameComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" VerticalAlignment="Center" Width="224">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Button Content="Save changes" HorizontalAlignment="Left" Width="88" Margin="324,0,0,0" Click="Button_Click"/>
+            <DataGrid x:Name="matchesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource matchesViewSource}}" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="awayScoreColumn" Binding="{Binding AwayScore}" Header="Away Score" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="awayTeamIdColumn" Binding="{Binding AwayTeamId}" Header="Away Team Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="homeScoreColumn" Binding="{Binding HomeScore}" Header="Home Score" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="homeTeamIdColumn" Binding="{Binding HomeTeamId}" Header="Home Team Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="leagueIdColumn" Binding="{Binding LeagueId}" Header="League Id" Width="SizeToHeader"/>
+                    <DataGridTemplateColumn x:Name="timeOfPlayColumn" Header="Time Of Play" Width="SizeToHeader">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding TimeOfPlay, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Window>
