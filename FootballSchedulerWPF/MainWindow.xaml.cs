@@ -22,7 +22,7 @@ namespace FootballSchedulerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FootballSchedulerDBContext fsEntities = new FootballSchedulerDBContext();
+        private FootballSchedulerDBContext context = new FootballSchedulerDBContext();
 
         public MainWindow()
         {
@@ -40,20 +40,20 @@ namespace FootballSchedulerWPF
             System.Windows.Data.CollectionViewSource leaguesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("leaguesViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // leaguesViewSource.Source = [generic data source]
-            this.fsEntities.Leagues.Load();
-            leaguesViewSource.Source = this.fsEntities.Leagues.Local.ToList();
+            this.context.Leagues.Load();
+            leaguesViewSource.Source = this.context.Leagues.Local.ToList();
 
 
             System.Windows.Data.CollectionViewSource matchesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("matchesViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // matchesViewSource.Source = [generic data source]
-            fsEntities.Matches.Load();
-            matchesViewSource.Source = fsEntities.Matches.Local;
+            context.Matches.Load();
+            matchesViewSource.Source = context.Matches.Local;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            fsEntities.SaveChanges();
+            context.SaveChanges();
         }
     }
 }
