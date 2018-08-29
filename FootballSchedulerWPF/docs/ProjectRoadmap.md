@@ -25,6 +25,7 @@ FootballSchedulerDLL
 + [x] Final compilation
 + [x] DLL code clean-up and methods description
 + [x] Tests code clean-up
++ [x] Release
 + [ ] Readme (overview)
 
 ## Windows application
@@ -41,6 +42,7 @@ FootballSchedulerWPF (this)
 + [ ] Final compilation
 + [ ] Readme (overview)
 + [ ] Code clean-up
++ [ ] Release
 + [ ] Whole project overview (readme)
 
 ## Project evaluation
