@@ -32,10 +32,13 @@ namespace FootballSchedulerWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Data.CollectionViewSource leaguesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("leaguesViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // leaguesViewSource.Source = [generic data source]
             context.Leagues.Load();
             leaguesViewSource.Source = context.Leagues.Local;
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            context.SaveChanges();
         }
     }
 }

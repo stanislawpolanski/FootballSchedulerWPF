@@ -33,7 +33,9 @@ FootballSchedulerWPF (this)
 + [x] Project initiation
 + [x] Generating DB first models
 + [x] Project design
-+ [ ] Binding matches
++ [x] Binding matches
++ [x] Format columns
++ [ ] Save changes
 + [ ] Binding standings
 + [ ] Windows design
 + [ ] Entity-library adapters
