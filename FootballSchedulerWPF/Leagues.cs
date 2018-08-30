@@ -10,20 +10,20 @@
 namespace FootballSchedulerWPF
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     
     public partial class Leagues
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Leagues()
         {
-            this.Matches = new HashSet<Matches>();
+            this.Matches = new ObservableCollection<Matches>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Matches> Matches { get; set; }
+        public virtual ObservableCollection<Matches> Matches { get; set; }
     }
 }

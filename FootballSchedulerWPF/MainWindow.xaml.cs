@@ -31,29 +31,11 @@ namespace FootballSchedulerWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource getMatchesByLeagueId_ResultViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("getMatchesByLeagueId_ResultViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // getMatchesByLeagueId_ResultViewSource.Source = [generic data source]
-
-
             System.Windows.Data.CollectionViewSource leaguesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("leaguesViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // leaguesViewSource.Source = [generic data source]
-            this.context.Leagues.Load();
-            leaguesViewSource.Source = this.context.Leagues.Local.ToList();
-
-
-            System.Windows.Data.CollectionViewSource matchesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("matchesViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // matchesViewSource.Source = [generic data source]
-            context.Matches.Load();
-            matchesViewSource.Source = context.Matches.Local;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            context.SaveChanges();
+            context.Leagues.Load();
+            leaguesViewSource.Source = context.Leagues.Local;
         }
     }
 }

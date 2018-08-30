@@ -7,69 +7,52 @@
         mc:Ignorable="d"
         Title="FootballScheduler" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
-        <CollectionViewSource x:Key="getMatchesByLeagueId_ResultViewSource" d:DesignSource="{d:DesignInstance {x:Type local:GetMatchesByLeagueId_Result}, CreateList=True}"/>
         <CollectionViewSource x:Key="leaguesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Leagues}, CreateList=True}"/>
-        <CollectionViewSource x:Key="matchesViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Matches}, CreateList=True}"/>
+        <CollectionViewSource x:Key="leaguesMatchesViewSource" Source="{Binding Matches, Source={StaticResource leaguesViewSource}}"/>
     </Window.Resources>
-    <Grid>
+    <Grid DataContext="{StaticResource leaguesMatchesViewSource}">
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="MenuBarRow" Height="22"/>
-            <RowDefinition x:Name="DataBarRow"/>
-            <RowDefinition x:Name="StatusBarRow" Height="25"/>
+            <RowDefinition x:Name="MenuBarRow" Height="{Binding Height, ElementName=menuItem}"/>
+            <RowDefinition x:Name="DataBarNavigationRow" Height="30"/>
+            <RowDefinition x:Name="DataViewRow"/>
+            <RowDefinition x:Name="StatusBarRow" Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Menu x:Name="TopMenuBar">
             <MenuItem Header="File">
-                <MenuItem Header="Do nothing"/>
+                <MenuItem x:Name="menuItem" Header="Do nothing"/>
             </MenuItem>
         </Menu>
-        <StatusBar x:Name="BottomStatusBar" Grid.Row="2"/>
-        <Label Content="Not active yet" VerticalAlignment="Top" Grid.Row="2"/>
-        <Grid x:Name="DisplayGrid" Grid.Row="1" DataContext="{StaticResource getMatchesByLeagueId_ResultViewSource}">
-            <Grid.RowDefinitions>
-                <RowDefinition x:Name="SelectionRow" Height="22"/>
-                <RowDefinition x:Name="TableRow"/>
-            </Grid.RowDefinitions>
+        <StatusBar x:Name="BottomStatusBar" Grid.Row="3">
+            <Label Content="Not active yet" VerticalAlignment="Top" Grid.Row="3"/>
+        </StatusBar>
+        <Grid x:Name="grid1" DataContext="{StaticResource leaguesViewSource}" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Load this league" HorizontalAlignment="Left" Width="100" Margin="224,0,0,0"/>
-            <Grid x:Name="grid1" DataContext="{StaticResource leaguesViewSource}" HorizontalAlignment="Left" Margin="86,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-            </Grid>
-            <ComboBox x:Name="nameComboBox" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" VerticalAlignment="Center" Width="224">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="nameComboBox" Grid.Column="1" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Button Content="Save changes" HorizontalAlignment="Left" Width="88" Margin="324,0,0,0" Click="Button_Click"/>
-            <DataGrid x:Name="matchesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource matchesViewSource}}" Grid.Row="1" RowDetailsVisibilityMode="VisibleWhenSelected">
-                <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="awayScoreColumn" Binding="{Binding AwayScore}" Header="Away Score" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="awayTeamIdColumn" Binding="{Binding AwayTeamId}" Header="Away Team Id" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="homeScoreColumn" Binding="{Binding HomeScore}" Header="Home Score" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="homeTeamIdColumn" Binding="{Binding HomeTeamId}" Header="Home Team Id" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                    <DataGridTextColumn x:Name="leagueIdColumn" Binding="{Binding LeagueId}" Header="League Id" Width="SizeToHeader"/>
-                    <DataGridTemplateColumn x:Name="timeOfPlayColumn" Header="Time Of Play" Width="SizeToHeader">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding TimeOfPlay, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
         </Grid>
+        <DataGrid x:Name="matchesDataGrid" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding TimeOfPlay}" ClipboardContentBinding="{x:Null}" Header="Time of play"/>
+                <DataGridTextColumn Binding="{Binding Teams.Name}" ClipboardContentBinding="{x:Null}" Header="Home Team Name"/>
+                <DataGridTextColumn x:Name="homeScoreColumn" Binding="{Binding HomeScore}" Header="Home Score" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="awayScoreColumn" Binding="{Binding AwayScore}" Header="Away Score" Width="SizeToHeader"/>
+                <DataGridTextColumn Binding="{Binding Teams1.Name}" ClipboardContentBinding="{x:Null}" Header="Away Team Name"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

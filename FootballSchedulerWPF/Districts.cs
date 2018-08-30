@@ -10,14 +10,14 @@
 namespace FootballSchedulerWPF
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     
     public partial class Districts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Districts()
         {
-            this.Teams = new HashSet<Teams>();
+            this.Teams = new ObservableCollection<Teams>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace FootballSchedulerWPF
         public Nullable<int> ParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Teams> Teams { get; set; }
+        public virtual ObservableCollection<Teams> Teams { get; set; }
     }
 }

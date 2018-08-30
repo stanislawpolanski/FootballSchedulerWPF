@@ -145,7 +145,6 @@
     <None Include="datasources\GetLeagueStandingsByLeagueId_Result3.datasource" />
     <None Include="datasources\GetMatchesByLeagueId_Result5.datasource" />
     <None Include="datasources\Leagues3.datasource" />
-    <None Include="datasources\MainWindow3.datasource" />
     <None Include="datasources\Matches3.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
