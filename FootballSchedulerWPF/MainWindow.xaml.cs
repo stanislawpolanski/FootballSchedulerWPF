@@ -40,5 +40,11 @@ namespace FootballSchedulerWPF
         {
             context.SaveChanges();
         }
+
+        private void showStandingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            StandingsViewWindow standingsWindow = new StandingsViewWindow(this);
+            standingsWindow.Show();
+        }
     }
 }
