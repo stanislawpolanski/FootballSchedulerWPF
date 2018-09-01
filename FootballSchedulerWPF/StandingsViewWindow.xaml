@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FootballSchedulerWPF"
+        xmlns:Converters="clr-namespace:FootballSchedulerWPF.Converters"
         mc:Ignorable="d"
-        Title="StandingsViewWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="StandingsViewWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Converters:RowToRowNumberConverter x:Key="RowToRowNumberConverter" />
+        <CollectionViewSource x:Key="getLeagueStandingsByLeagueId_ResultViewSource" d:DesignSource="{d:DesignInstance {x:Type local:GetLeagueStandingsByLeagueId_Result}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource getLeagueStandingsByLeagueId_ResultViewSource}">
+        <DataGrid x:Name="getLeagueStandingsByLeagueId_ResultDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" ColumnWidth="Auto" AutoGenerateColumns="False">
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource RowToRowNumberConverter}}" Width="Auto"></TextBlock>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="teamNameColumn" Binding="{Binding TeamName}" Header="Team Name" Width="Auto"/>
+                <DataGridTextColumn x:Name="playedColumn" Binding="{Binding Played}" Header="Played" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="pointsColumn" Binding="{Binding Points}" Header="Points" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="goalsForColumn" Binding="{Binding GoalsFor}" Header="Goals For" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="goalsAgainstColumn" Binding="{Binding GoalsAgainst}" Header="Goals Against" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="goalsDifferenceColumn" Binding="{Binding GoalsDifference}" Header="Goals Difference" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="wonColumn" Binding="{Binding Won}" Header="Won" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="drawnColumn" Binding="{Binding Drawn}" Header="Drawn" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="lostColumn" Binding="{Binding Lost}" Header="Lost" Width="SizeToHeader"/>
+
+                <!--<DataGridTextColumn x:Name="playerColumn" Binding="{Binding Player}" Header="Player" Width="SizeToHeader"/>-->
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

@@ -24,10 +24,17 @@ namespace FootballSchedulerWPF
         {
             InitializeComponent();
             this.mainWindow = mw;
-            Leagues selectedLeague = (Leagues)mw.nameComboBox.SelectedItem;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Leagues selectedLeague = (Leagues)this.mainWindow.nameComboBox.SelectedItem;
             using (FootballSchedulerDBContext context = new FootballSchedulerDBContext())
             {
-
+                System.Windows.Data.CollectionViewSource getLeagueStandingsByLeagueId_ResultViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("getLeagueStandingsByLeagueId_ResultViewSource")));
+                // Load data by setting the CollectionViewSource.Source property:
+                // getLeagueStandingsByLeagueId_ResultViewSource.Source = [generic data source]
+                getLeagueStandingsByLeagueId_ResultViewSource.Source = context.GetLeagueStandingsByLeagueId(selectedLeague.Id).OrderByDescending(x => x.Points).ThenByDescending(x => x.GoalsDifference).ThenByDescending(x => x.GoalsFor).ThenByDescending(x => x.Played).ThenByDescending(x => x.TeamName);
             }
         }
     }

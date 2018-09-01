@@ -67,6 +67,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\DateTimeConverter.cs" />
+    <Compile Include="Converters\RowToRowNumberConverter.cs" />
     <Compile Include="Districts.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
@@ -138,7 +139,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="datasources\Districts3.datasource" />
+    <None Include="DataSources\Districts3.datasource" />
     <None Include="docs\ProjectInitiationDocument.md" />
     <None Include="docs\ProjectRoadmap.md" />
     <EntityDeploy Include="FootballSchedulerDBModel.edmx">
@@ -146,20 +147,20 @@
       <LastGenOutput>FootballSchedulerDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="docs\DesiredWindowFunctionality.md" />
-    <None Include="datasources\FootballSchedulerDBContext3.datasource" />
+    <None Include="DataSources\FootballSchedulerDBContext3.datasource" />
     <None Include="FootballSchedulerDBModel.edmx.diagram">
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
     </None>
-    <None Include="datasources\GetLeagueStandingsByLeagueId_Result3.datasource" />
-    <None Include="datasources\GetMatchesByLeagueId_Result5.datasource" />
-    <None Include="datasources\Leagues3.datasource" />
-    <None Include="datasources\Matches3.datasource" />
+    <None Include="DataSources\GetLeagueStandingsByLeagueId_Result3.datasource" />
+    <None Include="DataSources\GetMatchesByLeagueId_Result5.datasource" />
+    <None Include="DataSources\Leagues3.datasource" />
+    <None Include="DataSources\Matches3.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="datasources\Teams3.datasource" />
+    <None Include="DataSources\Teams3.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
