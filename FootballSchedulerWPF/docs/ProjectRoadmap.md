@@ -37,7 +37,7 @@ FootballSchedulerWPF (this)
 + [x] Format columns
 + [x] Save changes
 + [x] Binding standings
-+ [ ] Entity-library adapters
++ [x] Entity-library adapters
 + [ ] New league window design
 + [ ] Generating new league
 + [ ] Entity data validation?
