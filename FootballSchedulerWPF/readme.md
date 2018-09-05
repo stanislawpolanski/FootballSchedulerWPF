@@ -1,0 +1,1 @@
+﻿# Football scheduler WPF project description

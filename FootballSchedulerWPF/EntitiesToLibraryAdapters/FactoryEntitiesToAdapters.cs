@@ -1,35 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FootballSchedulerWPF.EntitiesToLibraryAdapters
 {
-    public class FactoryEntitiesToAdapters
+    public class EntitiesAdaptersFactory
     {
-        protected Dictionary<Type, Type> KeysToValues = new Dictionary<Type, Type>();
+        protected Dictionary<Type, Type> KeysToValues;
 
-        public FactoryEntitiesToAdapters()
+        public EntitiesAdaptersFactory()
         {
-            this.Register(typeof(Leagues), typeof(LeagueEntityToLibraryAdapter));
-            this.Register(typeof(Matches), typeof(MatchEntityToLibraryAdapter));
-            this.Register(typeof(Teams), typeof(TeamEntityToLibraryAdapter));
+            //todo register basic types
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Registers key and value.
-        /// </summary>
-        /// <param name="Key">Must be IEntitiesToLibraryAdapter, otherwise throws ArgumentException.</param>
-        /// <param name="Value"></param>
-        public void Register(Type Key, Type Value)
+        public void Register()
         {
-            if (Value is IEntitiesToLibraryAdapter)
-                this.KeysToValues.Add(Key, Value);
-            else
-                throw new ArgumentException();
+            //todo registering
+            throw new NotImplementedException();
         }
 
-        public object Initialize(Type Key)
+        public IEntitiesToLibraryAdapter Initialize()
         {
-            return Activator.CreateInstance(this.KeysToValues[Key]);
+            //todo initializing
+            throw new NotImplementedException();
         }
     }
 }

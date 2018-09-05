@@ -26,6 +26,9 @@
             <MenuItem Header="File">
                 <MenuItem x:Name="menuItem" Header="Do nothing"/>
             </MenuItem>
+            <MenuItem Header="Leagues">
+                <MenuItem x:Name="generateNewLeagueItem" Header="Generate new league"/>
+            </MenuItem>
         </Menu>
         <StatusBar x:Name="BottomStatusBar" Grid.Row="3">
             <Label Content="Not active yet" VerticalAlignment="Top" Grid.Row="3"/>
