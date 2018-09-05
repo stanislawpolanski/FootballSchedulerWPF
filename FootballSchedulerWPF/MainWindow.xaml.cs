@@ -46,5 +46,11 @@ namespace FootballSchedulerWPF
             StandingsViewWindow standingsWindow = new StandingsViewWindow(this);
             standingsWindow.Show();
         }
+
+        private void generateNewLeagueItem_Click(object sender, RoutedEventArgs e)
+        {
+            GenerateNewLeagueWindow newLeagueWindow = new GenerateNewLeagueWindow(this);
+            newLeagueWindow.Show();
+        }
     }
 }

@@ -41,7 +41,10 @@ FootballSchedulerWPF (this)
     + [x] Adapters dev
     + [x] ~~Adapters factory~~ (abandoned for now)
 + [ ] New league window design
-+ [ ] Generating new league
+    + [x] Window file created
+    + [ ] Fields and buttons designed
+    + [ ] Fields and buttons created
+    + [ ] Fields and buttons programmed to generate new league
 + [ ] Entity data validation?
 + [ ] Command logging
 + [ ] Testing

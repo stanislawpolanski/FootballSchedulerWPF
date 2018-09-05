@@ -19,9 +19,17 @@ namespace FootballSchedulerWPF
     /// </summary>
     public partial class GenerateNewLeagueWindow : Window
     {
+        private MainWindow mainWindow;
+
         public GenerateNewLeagueWindow()
         {
             InitializeComponent();
+        }
+
+        public GenerateNewLeagueWindow(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
         }
     }
 }

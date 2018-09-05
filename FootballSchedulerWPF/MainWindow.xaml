@@ -27,7 +27,7 @@
                 <MenuItem x:Name="menuItem" Header="Do nothing"/>
             </MenuItem>
             <MenuItem Header="Leagues">
-                <MenuItem x:Name="generateNewLeagueItem" Header="Generate new league"/>
+                <MenuItem x:Name="generateNewLeagueItem" Header="Generate new league" Click="generateNewLeagueItem_Click"/>
             </MenuItem>
         </Menu>
         <StatusBar x:Name="BottomStatusBar" Grid.Row="3">
