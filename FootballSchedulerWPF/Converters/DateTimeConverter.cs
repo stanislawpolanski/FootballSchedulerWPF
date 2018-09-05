@@ -18,12 +18,10 @@ namespace FootballSchedulerWPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string strValue = value.ToString();
+            string stringValue = value.ToString();
             DateTime resultDateTime;
-            if (DateTime.TryParse(strValue, out resultDateTime))
-            {
+            if (DateTime.TryParse(stringValue, out resultDateTime))
                 return resultDateTime;
-            }
             return value;
         }
     }

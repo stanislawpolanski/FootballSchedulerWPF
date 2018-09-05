@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootballSchedulerWPF.EntitiesToLibraryAdapters
 {
-    interface IEntitiesToLibraryAdapter
+    public interface IEntitiesToLibraryAdapter
     {
         void Adapt(object adaptee);
     }

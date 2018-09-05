@@ -22,9 +22,9 @@
                 <DataGridTextColumn x:Name="teamNameColumn" Binding="{Binding TeamName}" Header="Team Name" Width="Auto"/>
                 <DataGridTextColumn x:Name="playedColumn" Binding="{Binding Played}" Header="Played" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="pointsColumn" Binding="{Binding Points}" Header="Points" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="goalsDifferenceColumn" Binding="{Binding GoalsDifference}" Header="Goals Difference" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="goalsForColumn" Binding="{Binding GoalsFor}" Header="Goals For" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="goalsAgainstColumn" Binding="{Binding GoalsAgainst}" Header="Goals Against" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="goalsDifferenceColumn" Binding="{Binding GoalsDifference}" Header="Goals Difference" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="wonColumn" Binding="{Binding Won}" Header="Won" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="drawnColumn" Binding="{Binding Drawn}" Header="Drawn" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="lostColumn" Binding="{Binding Lost}" Header="Lost" Width="SizeToHeader"/>

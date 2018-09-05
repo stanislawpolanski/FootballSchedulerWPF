@@ -71,6 +71,7 @@
     <Compile Include="Districts.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntitiesToLibraryAdapters\FactoryEntitiesToAdapters.cs" />
     <Compile Include="EntitiesToLibraryAdapters\IEntitiesToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\LeagueEntityToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\MatchEntityToLibraryAdapter.cs" />
