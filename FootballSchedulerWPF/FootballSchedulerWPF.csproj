@@ -68,9 +68,6 @@
     </ApplicationDefinition>
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\RowToRowNumberConverter.cs" />
-    <Compile Include="CreateNewLeagueWindow.xaml.cs">
-      <DependentUpon>CreateNewLeagueWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Districts.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
@@ -99,10 +96,6 @@
     <Compile Include="Teams.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Page Include="CreateNewLeagueWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GenerateNewLeagueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

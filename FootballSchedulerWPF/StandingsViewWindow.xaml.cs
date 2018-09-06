@@ -36,6 +36,9 @@ namespace FootballSchedulerWPF
                 // getLeagueStandingsByLeagueId_ResultViewSource.Source = [generic data source]
                 getLeagueStandingsByLeagueId_ResultViewSource.Source = context.GetLeagueStandingsByLeagueId(selectedLeague.Id).OrderByDescending(x => x.Points).ThenByDescending(x => x.GoalsDifference).ThenByDescending(x => x.GoalsFor).ThenByDescending(x => x.Played).ThenByDescending(x => x.TeamName);
             }
+            System.Windows.Data.CollectionViewSource districtsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("districtsViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // districtsViewSource.Source = [generic data source]
         }
     }
 }

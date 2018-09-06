@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,18 @@ namespace FootballSchedulerWPF
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+
+            //sourceTeamsListBox.ItemsSource = null;
+
+            using (FootballSchedulerDBContext context = new FootballSchedulerDBContext())
+            {
+                context.Teams.Load();
+
+                sourceTeamsListBox.ItemsSource = context.Teams.Local;
+
+
+
+            }
         }
     }
 }
