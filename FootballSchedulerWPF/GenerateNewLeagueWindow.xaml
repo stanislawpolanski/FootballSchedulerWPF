@@ -17,7 +17,9 @@
         <WrapPanel x:Name="generationWrapPanel">
             <Label Content="New league's name: "/>
             <TextBox x:Name="newLeagueNameTextBox" Width="100"/>
-            <Button x:Name="generateLeagueButton" Content="Generate new league"/>
+            <Label Content="Year of start: "/>
+            <TextBox x:Name="newLeagueYearOfStartTextBox" Width="50"/>
+            <Button x:Name="generateLeagueButton" Content="Generate new league" Click="generateLeagueButton_Click"/>
         </WrapPanel>
         <Grid x:Name="teamsGrid" Grid.Row="1"/>
         <Grid Grid.Row="1">
@@ -38,7 +40,6 @@
                 </WrapPanel>
                 <ListBox DataContext="{StaticResource teamsViewSource}" ItemsSource="{Binding }" x:Name="targetTeamsListBox" DisplayMemberPath="Name"/>
             </StackPanel>
-
         </Grid>
     </Grid>
 </Window>

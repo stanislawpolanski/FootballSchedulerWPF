@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FootballSchedulerDLL;
+using FootballSchedulerDLL.AuxiliaryClasses;
+using FootballSchedulerWPF.EntitiesToLibraryAdapters;
 
 namespace FootballSchedulerWPF
 {
@@ -21,6 +24,7 @@ namespace FootballSchedulerWPF
     public partial class GenerateNewLeagueWindow : Window
     {
         private MainWindow mainWindow;
+        private FootballSchedulerDBContext Context;
 
         public GenerateNewLeagueWindow()
         {
@@ -32,13 +36,9 @@ namespace FootballSchedulerWPF
             InitializeComponent();
             this.mainWindow = mainWindow;
 
-            //sourceTeamsListBox.ItemsSource = null;
-
-            using (FootballSchedulerDBContext context = new FootballSchedulerDBContext())
-            {
-                context.Teams.Load();
-                sourceTeamsListBox.ItemsSource = context.Teams.Local;
-            }
+            Context = new FootballSchedulerDBContext();
+            Context.Teams.Load();
+            sourceTeamsListBox.ItemsSource = Context.Teams.Local;
         }
 
         private void copyTeamToNewLeague_Click(object sender, RoutedEventArgs e)
@@ -54,6 +54,44 @@ namespace FootballSchedulerWPF
         private void removeTeamFromNewLeague_Click(object sender, RoutedEventArgs e)
         {
             targetTeamsListBox.Items.Remove(targetTeamsListBox.SelectedItem);
+        }
+
+        private void generateLeagueButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (newLeagueNameTextBox.Text == null || newLeagueNameTextBox.Text == String.Empty)
+            {
+                MessageBox.Show("No league's name.");
+                return;
+            }
+            if (newLeagueYearOfStartTextBox.Text == null || newLeagueYearOfStartTextBox.Text == String.Empty)
+            {
+                MessageBox.Show("No year of start.");
+                return;
+            }
+            Leagues newLeagueEntity = new Leagues
+            {
+                Name = newLeagueNameTextBox.Text
+            };
+            //TODO parsing year of start
+            
+
+            LeagueEntityToLibraryAdapter newLeagueAdapter = new LeagueEntityToLibraryAdapter();
+            newLeagueAdapter.Adapt(newLeagueEntity);
+
+            RoundRobinScheduler scheduler = new RoundRobinScheduler();
+
+            scheduler.LoadLeague(newLeagueAdapter);
+
+            List<ITeam> listOfTeamsAdapter = new List<ITeam>();
+
+            foreach(Teams team in targetTeamsListBox.Items)
+            {
+                TeamEntityToLibraryAdapter teamAdapter = new TeamEntityToLibraryAdapter();
+                teamAdapter.Adapt(team);
+                listOfTeamsAdapter.Add(teamAdapter);
+            }
+
+            scheduler.LoadTeams(listOfTeamsAdapter);
         }
     }
 }
