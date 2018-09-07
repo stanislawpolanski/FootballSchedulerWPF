@@ -37,12 +37,23 @@ namespace FootballSchedulerWPF
             using (FootballSchedulerDBContext context = new FootballSchedulerDBContext())
             {
                 context.Teams.Load();
-
                 sourceTeamsListBox.ItemsSource = context.Teams.Local;
-
-
-
             }
+        }
+
+        private void copyTeamToNewLeague_Click(object sender, RoutedEventArgs e)
+        {
+            if (targetTeamsListBox.Items.Contains(sourceTeamsListBox.SelectedItem))
+            {
+                MessageBox.Show("Team already copied.");
+                return;
+            }
+            targetTeamsListBox.Items.Add(sourceTeamsListBox.SelectedItem);
+        }
+
+        private void removeTeamFromNewLeague_Click(object sender, RoutedEventArgs e)
+        {
+            targetTeamsListBox.Items.Remove(targetTeamsListBox.SelectedItem);
         }
     }
 }
