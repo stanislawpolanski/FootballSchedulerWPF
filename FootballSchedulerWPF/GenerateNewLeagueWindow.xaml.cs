@@ -68,12 +68,20 @@ namespace FootballSchedulerWPF
                 MessageBox.Show("No year of start.");
                 return;
             }
+
             Leagues newLeagueEntity = new Leagues
             {
                 Name = newLeagueNameTextBox.Text
             };
-            //TODO parsing year of start
-            
+            //parsing year of start
+            int yearOfStartNumberFromTextBox;
+            if(!int.TryParse(newLeagueYearOfStartTextBox.Text, out yearOfStartNumberFromTextBox))
+            { 
+                MessageBox.Show("Invalid year of start.");
+                return;
+            }
+
+            DateTime yearOfStart = new DateTime(yearOfStartNumberFromTextBox, 1, 1);
 
             LeagueEntityToLibraryAdapter newLeagueAdapter = new LeagueEntityToLibraryAdapter();
             newLeagueAdapter.Adapt(newLeagueEntity);
@@ -92,6 +100,33 @@ namespace FootballSchedulerWPF
             }
 
             scheduler.LoadTeams(listOfTeamsAdapter);
+
+            scheduler.YearOfStart = yearOfStart;
+
+            scheduler.GenerateSchedule();
+
+            List<IMatch> listOfMatchesFromAlgorithm = scheduler.GetSchedule();
+
+            List<Matches> listOfMatchesEntities = new List<Matches>();
+
+            Matches m = new Matches();
+            m.HomeTeamId = 3;
+            m.AwayTeamId = 5;
+            m.LeagueId = 15;
+            Context.Matches.Add(m);
+            /*
+            foreach(IMatch match in listOfMatchesFromAlgorithm)
+            {
+                MatchLibraryToEntityAdapter matchAdapter = new MatchLibraryToEntityAdapter();
+                matchAdapter.Adapt(match);
+                matchAdapter.LeagueId = newLeagueEntity.Id;
+
+                Matches adaptedMatch = (Matches)matchAdapter;
+
+                Context.Matches.Add(adaptedMatch);
+            }
+            Context.Leagues.Add(newLeagueEntity);*/
+            Context.SaveChanges();
         }
     }
 }

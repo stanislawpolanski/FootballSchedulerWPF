@@ -75,6 +75,7 @@
     <Compile Include="EntitiesToLibraryAdapters\IEntitiesToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\LeagueEntityToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\MatchEntityToLibraryAdapter.cs" />
+    <Compile Include="EntitiesToLibraryAdapters\MatchLibraryToEntityAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\TeamEntityToLibraryAdapter.cs" />
     <Compile Include="FootballSchedulerDBModel.cs">
       <AutoGen>True</AutoGen>
@@ -96,6 +97,7 @@
     <Compile Include="Teams.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\GenerateNewLeagueViewModel.cs" />
     <Page Include="GenerateNewLeagueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
