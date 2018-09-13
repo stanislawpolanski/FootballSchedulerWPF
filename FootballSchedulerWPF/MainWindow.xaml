@@ -53,10 +53,10 @@
         <DataGrid x:Name="matchesDataGrid" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="2" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TimeOfPlay, Converter={StaticResource DateTimeConverter}}" ClipboardContentBinding="{x:Null}" Header="Time of play" />
-                <DataGridTextColumn Binding="{Binding Teams.Name}" ClipboardContentBinding="{x:Null}" Header="Home Team Name"/>
+                <DataGridTextColumn Binding="{Binding Teams1.Name}" ClipboardContentBinding="{x:Null}" Header="Home Team Name"/>
                 <DataGridTextColumn x:Name="homeScoreColumn" Binding="{Binding HomeScore}" Header="Home Score" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="awayScoreColumn" Binding="{Binding AwayScore}" Header="Away Score" Width="SizeToHeader"/>
-                <DataGridTextColumn Binding="{Binding Teams1.Name}" ClipboardContentBinding="{x:Null}" Header="Away Team Name"/>
+                <DataGridTextColumn Binding="{Binding Teams.Name}" ClipboardContentBinding="{x:Null}" Header="Away Team Name"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="saveButton" Content="Save changes" HorizontalAlignment="Left" Margin="176,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Click="saveButton_Click"/>

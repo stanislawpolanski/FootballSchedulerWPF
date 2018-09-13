@@ -58,6 +58,7 @@ namespace FootballSchedulerWPF
 
         private void generateLeagueButton_Click(object sender, RoutedEventArgs e)
         {
+            //todo create viewmodel instead - then test it console
             if (newLeagueNameTextBox.Text == null || newLeagueNameTextBox.Text == String.Empty)
             {
                 MessageBox.Show("No league's name.");

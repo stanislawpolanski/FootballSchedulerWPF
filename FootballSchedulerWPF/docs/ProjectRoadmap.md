@@ -40,10 +40,14 @@ FootballSchedulerWPF (this)
 + [x] Entity-library adapters
     + [x] Adapters dev
     + [x] ~~Adapters factory~~ (abandoned for now)
++ [ ] ViewModels stubs
+    + [ ] Main Window 
+    + [ ] Standings
 + [ ] New league window design
     + [x] Window file created
     + [x] Fields and buttons designed
     + [x] Fields and buttons created
+    + [ ] Generate new league view model
     + [ ] Fields and buttons programmed to generate new league
 + [ ] Entity data validation?
 + [ ] Command logging

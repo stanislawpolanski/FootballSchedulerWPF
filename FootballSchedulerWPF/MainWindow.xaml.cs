@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootballSchedulerWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -22,7 +23,8 @@ namespace FootballSchedulerWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FootballSchedulerDBContext context = new FootballSchedulerDBContext();
+        //private FootballSchedulerDBContext context = new FootballSchedulerDBContext();
+        private MainWindowViewModel viewModel;
 
         public MainWindow()
         {
@@ -32,13 +34,18 @@ namespace FootballSchedulerWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Data.CollectionViewSource leaguesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("leaguesViewSource")));
-            context.Leagues.Load();
-            leaguesViewSource.Source = context.Leagues.Local;
+            //context.Leagues.Load();
+
+            //leaguesViewSource.Source = context.Leagues.Local;
+
+            viewModel = new MainWindowViewModel();
+            leaguesViewSource.Source = viewModel.ReturnData();
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            context.SaveChanges();
+            viewModel.SaveChanges();
+            //context.SaveChanges();
         }
 
         private void showStandingsButton_Click(object sender, RoutedEventArgs e)
