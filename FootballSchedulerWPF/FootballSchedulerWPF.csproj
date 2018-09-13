@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="ViewModels\GenerateNewLeagueViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\StandingsViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Page Include="GenerateNewLeagueWindow.xaml">
       <SubType>Designer</SubType>
