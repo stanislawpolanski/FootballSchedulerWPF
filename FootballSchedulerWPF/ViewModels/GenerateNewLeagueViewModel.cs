@@ -63,13 +63,14 @@ namespace FootballSchedulerWPF.ViewModels
 
             foreach (IMatch match in listOfMatchesFromAlgorithm)
             {
-                MatchLibraryToEntityAdapter matchAdapter = new MatchLibraryToEntityAdapter();
-                matchAdapter.Adapt(match);
-                matchAdapter.LeagueId = newLeagueEntity.Id;
+                Matches m = new Matches()
+                {
+                    TimeOfPlay = match.TimeOfPlay,
+                    HomeTeamId = match.HomeTeam.Id,
+                    AwayTeamId = match.AwayTeam.Id,
+                };
 
-                Matches adaptedMatch = (Matches)matchAdapter;
-
-                Context.Matches.Add(adaptedMatch);
+                Context.Matches.Add(m);
             }
             Context.Leagues.Add(newLeagueEntity);
             Context.SaveChanges();

@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FootballSchedulerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Districts">
           <Key>
             <PropertyRef Name="Id" />
@@ -37,7 +43,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DistrictId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Matches_AwayTeam_To_Teams">
@@ -94,7 +100,7 @@
             <CollectionType>
               <RowType>
                 <Property Name="Player" Type="int" Nullable="false" />
-                <Property Name="TeamName" Type="varchar" MaxLength="50" />
+                <Property Name="TeamName" Type="nvarchar" MaxLength="50" />
                 <Property Name="Played" Type="int" />
                 <Property Name="Points" Type="int" />
                 <Property Name="GoalsFor" Type="int" />
@@ -124,6 +130,7 @@
           </ReturnType>
         </Function>
         <EntityContainer Name="FootballSchedulerDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Matches" EntityType="Self.Matches" Schema="dbo" store:Type="Tables" />
@@ -185,33 +192,18 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_To_Leagues" FromRole="Leagues" ToRole="Matches" />
-        </EntityType>
-        <EntityType Name="Matches">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LeagueId" Type="Int32" Nullable="false" />
-          <Property Name="TimeOfPlay" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
-          <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
-          <Property Name="HomeScore" Type="Int32" />
-          <Property Name="AwayScore" Type="Int32" />
-          <NavigationProperty Name="Leagues" Relationship="Self.FK_Matches_To_Leagues" FromRole="Matches" ToRole="Leagues" />
-          <NavigationProperty Name="Teams" Relationship="Self.FK_Matches_AwayTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
-          <NavigationProperty Name="Teams1" Relationship="Self.FK_Matches_HomeTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
+          <NavigationProperty Name="Matches" Relationship="FootballSchedulerDBModel.FK_Matches_To_Leagues" FromRole="Leagues" ToRole="Matches" />
         </EntityType>
         <EntityType Name="Teams">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DistrictId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Districts" Relationship="Self.FK_Teams_To_Districts" FromRole="Teams" ToRole="Districts" />
-          <NavigationProperty Name="Matches" Relationship="Self.FK_Matches_AwayTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
-          <NavigationProperty Name="Matches1" Relationship="Self.FK_Matches_HomeTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
+          <NavigationProperty Name="Matches" Relationship="FootballSchedulerDBModel.FK_Matches_AwayTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
+          <NavigationProperty Name="Matches1" Relationship="FootballSchedulerDBModel.FK_Matches_HomeTeam_To_Teams" FromRole="Teams" ToRole="Matches" />
         </EntityType>
         <Association Name="FK_Teams_To_Districts">
           <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
@@ -225,9 +217,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="FootballSchedulerDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Districts" EntityType="Self.Districts" />
+          <EntitySet Name="Leagues" EntityType="Self.Leagues" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" />
+          <AssociationSet Name="FK_Teams_To_Districts" Association="Self.FK_Teams_To_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Teams" EntitySet="Teams" />
+          </AssociationSet>
+          <FunctionImport Name="GetLeagueStandingsByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetLeagueStandingsByLeagueId_Result)">
+          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetMatchesByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetMatchesByLeagueId_Result)">
+          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="C__RefactorLog" EntityType="FootballSchedulerDBModel.C__RefactorLog" />
+          <EntitySet Name="Matches" EntityType="FootballSchedulerDBModel.Matches" />
+          <AssociationSet Name="FK_Matches_To_Leagues" Association="FootballSchedulerDBModel.FK_Matches_To_Leagues">
+            <End Role="Leagues" EntitySet="Leagues" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_AwayTeam_To_Teams" Association="FootballSchedulerDBModel.FK_Matches_AwayTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Matches_HomeTeam_To_Teams" Association="FootballSchedulerDBModel.FK_Matches_HomeTeam_To_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Matches" EntitySet="Matches" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeagueId" Type="Int32" Nullable="false" />
+          <Property Name="TimeOfPlay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeTeamId" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamId" Type="Int32" Nullable="false" />
+          <Property Name="HomeScore" Type="Int32" />
+          <Property Name="AwayScore" Type="Int32" />
+          <NavigationProperty Name="Leagues" Relationship="FootballSchedulerDBModel.FK_Matches_To_Leagues" FromRole="Matches" ToRole="Leagues" />
+          <NavigationProperty Name="Teams" Relationship="FootballSchedulerDBModel.FK_Matches_AwayTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
+          <NavigationProperty Name="Teams1" Relationship="FootballSchedulerDBModel.FK_Matches_HomeTeam_To_Teams" FromRole="Matches" ToRole="Teams" />
+        </EntityType>
         <Association Name="FK_Matches_To_Leagues">
-          <End Role="Leagues" Type="Self.Leagues" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <End Type="FootballSchedulerDBModel.Leagues" Role="Leagues" Multiplicity="1" />
+          <End Type="FootballSchedulerDBModel.Matches" Role="Matches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Leagues">
               <PropertyRef Name="Id" />
@@ -238,8 +280,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Matches_AwayTeam_To_Teams">
-          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <End Type="FootballSchedulerDBModel.Teams" Role="Teams" Multiplicity="1" />
+          <End Type="FootballSchedulerDBModel.Matches" Role="Matches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
               <PropertyRef Name="Id" />
@@ -250,8 +292,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Matches_HomeTeam_To_Teams">
-          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
-          <End Role="Matches" Type="Self.Matches" Multiplicity="*" />
+          <End Type="FootballSchedulerDBModel.Teams" Role="Teams" Multiplicity="1" />
+          <End Type="FootballSchedulerDBModel.Matches" Role="Matches" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teams">
               <PropertyRef Name="Id" />
@@ -261,34 +303,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FootballSchedulerDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Districts" EntityType="Self.Districts" />
-          <EntitySet Name="Leagues" EntityType="Self.Leagues" />
-          <EntitySet Name="Matches" EntityType="Self.Matches" />
-          <EntitySet Name="Teams" EntityType="Self.Teams" />
-          <AssociationSet Name="FK_Teams_To_Districts" Association="Self.FK_Teams_To_Districts">
-            <End Role="Districts" EntitySet="Districts" />
-            <End Role="Teams" EntitySet="Teams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_To_Leagues" Association="Self.FK_Matches_To_Leagues">
-            <End Role="Leagues" EntitySet="Leagues" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_AwayTeam_To_Teams" Association="Self.FK_Matches_AwayTeam_To_Teams">
-            <End Role="Teams" EntitySet="Teams" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Matches_HomeTeam_To_Teams" Association="Self.FK_Matches_HomeTeam_To_Teams">
-            <End Role="Teams" EntitySet="Teams" />
-            <End Role="Matches" EntitySet="Matches" />
-          </AssociationSet>
-          <FunctionImport Name="GetLeagueStandingsByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetLeagueStandingsByLeagueId_Result)">
-          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetMatchesByLeagueId" IsComposable="true" ReturnType="Collection(FootballSchedulerDBModel.GetMatchesByLeagueId_Result)">
-          <Parameter Name="LeagueId" Mode="In" Type="Int32" />
-          </FunctionImport>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -309,19 +323,6 @@
               <MappingFragment StoreEntitySet="Leagues">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Matches">
-            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Matches">
-              <MappingFragment StoreEntitySet="Matches">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
-                <ScalarProperty Name="TimeOfPlay" ColumnName="TimeOfPlay" />
-                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
-                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
-                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
-                <ScalarProperty Name="AwayScore" ColumnName="AwayScore" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -363,6 +364,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="FootballSchedulerDBModel.Matches">
+              <MappingFragment StoreEntitySet="Matches">
+                <ScalarProperty Name="AwayScore" ColumnName="AwayScore" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="AwayTeamId" ColumnName="AwayTeamId" />
+                <ScalarProperty Name="HomeTeamId" ColumnName="HomeTeamId" />
+                <ScalarProperty Name="TimeOfPlay" ColumnName="TimeOfPlay" />
+                <ScalarProperty Name="LeagueId" ColumnName="LeagueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

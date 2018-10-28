@@ -29,8 +29,9 @@ namespace FootballSchedulerWPF
     
         public virtual DbSet<Districts> Districts { get; set; }
         public virtual DbSet<Leagues> Leagues { get; set; }
-        public virtual DbSet<Matches> Matches { get; set; }
         public virtual DbSet<Teams> Teams { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public virtual DbSet<Matches> Matches { get; set; }
     
         [DbFunction("FootballSchedulerDBContext", "GetLeagueStandingsByLeagueId")]
         public virtual IQueryable<GetLeagueStandingsByLeagueId_Result> GetLeagueStandingsByLeagueId(Nullable<int> leagueId)

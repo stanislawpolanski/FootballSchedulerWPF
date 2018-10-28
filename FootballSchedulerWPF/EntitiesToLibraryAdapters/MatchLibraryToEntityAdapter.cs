@@ -12,8 +12,9 @@ namespace FootballSchedulerWPF.EntitiesToLibraryAdapters
         {
             if (adaptee is FootballSchedulerDLL.AuxiliaryClasses.IMatch match)
             {
-                this.HomeTeamId = match.HomeTeamId;
-                this.AwayTeamId = match.AwayTeamId;
+                base.HomeTeamId = match.HomeTeam.Id;
+                base.AwayTeamId = match.AwayTeam.Id;
+                base.LeagueId   = match.LeagueId;
             }
             else
                 throw new ArgumentException("Adaptee is not a type of FootballSchedulerWPF.League.");

@@ -68,6 +68,9 @@
     </ApplicationDefinition>
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\RowToRowNumberConverter.cs" />
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Districts.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>

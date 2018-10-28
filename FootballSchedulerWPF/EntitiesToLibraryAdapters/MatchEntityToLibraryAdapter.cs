@@ -12,8 +12,6 @@ namespace FootballSchedulerWPF.EntitiesToLibraryAdapters
         {
             if (adaptee is Matches match)
             {
-                this.AwayTeamId = match.AwayTeamId;
-                this.HomeTeamId = match.HomeTeamId;
                 this.Id = match.Id;
                 this.LeagueId = match.LeagueId;
                 this.TimeOfPlay = match.TimeOfPlay;

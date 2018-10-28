@@ -12,7 +12,7 @@ FootballSchedulerDB
 + [x] Testing
 + [x] Final deployement
 + [x] Code clean-up
-+ [ ] Readme (overview)
++ [x] Readme (overview)
 
 ## Algorithms
 FootballSchedulerDLL
@@ -26,7 +26,7 @@ FootballSchedulerDLL
 + [x] DLL code clean-up and methods description
 + [x] Tests code clean-up
 + [x] Release
-+ [ ] Readme (overview)
++ [x] Readme (overview)
 
 ## Windows application
 FootballSchedulerWPF (this)
@@ -43,12 +43,12 @@ FootballSchedulerWPF (this)
 + [x] ViewModels stubs
     + [x] Main Window 
     + [x] Standings
-+ [ ] New league window design
++ [x] New league window design
     + [x] Window file created
     + [x] Fields and buttons designed
     + [x] Fields and buttons created
-    + [ ] Generate new league view model
-    + [ ] Fields and buttons programmed to generate new league
+    + [x] Generate new league view model
+    + [x] Fields and buttons programmed to generate new league
 + [ ] Entity data validation?
 + [ ] Command logging
 + [ ] Testing
