@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FootballSchedulerDLL;
 using FootballSchedulerDLL.AuxiliaryClasses;
 using FootballSchedulerWPF.EntitiesToLibraryAdapters;
+using FootballSchedulerWPF.ViewModels;
 
 namespace FootballSchedulerWPF
 {
@@ -24,7 +25,7 @@ namespace FootballSchedulerWPF
     public partial class GenerateNewLeagueWindow : Window
     {
         private MainWindow mainWindow;
-        private FootballSchedulerDBContext Context;
+        private GenerateNewLeagueViewModel viewModel;
 
         public GenerateNewLeagueWindow()
         {
@@ -35,10 +36,9 @@ namespace FootballSchedulerWPF
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+            this.viewModel = new GenerateNewLeagueViewModel();
 
-            Context = new FootballSchedulerDBContext();
-            Context.Teams.Load();
-            sourceTeamsListBox.ItemsSource = Context.Teams.Local;
+            sourceTeamsListBox.ItemsSource = viewModel.ReturnData();
         }
 
         private void copyTeamToNewLeague_Click(object sender, RoutedEventArgs e)
@@ -58,76 +58,23 @@ namespace FootballSchedulerWPF
 
         private void generateLeagueButton_Click(object sender, RoutedEventArgs e)
         {
-            //todo create viewmodel instead - then test it console
-            if (newLeagueNameTextBox.Text == null || newLeagueNameTextBox.Text == String.Empty)
-            {
-                MessageBox.Show("No league's name.");
-                return;
-            }
-            if (newLeagueYearOfStartTextBox.Text == null || newLeagueYearOfStartTextBox.Text == String.Empty)
-            {
-                MessageBox.Show("No year of start.");
-                return;
-            }
+            //todo catch-try block
+            if (viewModel.CheckNameInput(newLeagueNameTextBox.Text))
+                viewModel.NewLeagueName = newLeagueNameTextBox.Text;
+            else
+                throw new ArgumentException();
 
-            Leagues newLeagueEntity = new Leagues
-            {
-                Name = newLeagueNameTextBox.Text
-            };
-            //parsing year of start
-            int yearOfStartNumberFromTextBox;
-            if(!int.TryParse(newLeagueYearOfStartTextBox.Text, out yearOfStartNumberFromTextBox))
-            { 
-                MessageBox.Show("Invalid year of start.");
-                return;
-            }
+            if (!viewModel.TrySetYearInput(newLeagueYearOfStartTextBox.Text))
+                throw new ArgumentException("Year incorrect.");
 
-            DateTime yearOfStart = new DateTime(yearOfStartNumberFromTextBox, 1, 1);
+            viewModel.TeamsForNewLeague = targetTeamsListBox.Items;
 
-            LeagueEntityToLibraryAdapter newLeagueAdapter = new LeagueEntityToLibraryAdapter();
-            newLeagueAdapter.Adapt(newLeagueEntity);
+            bool scheduleGenerated = viewModel.GenerateSchedule();
 
-            RoundRobinScheduler scheduler = new RoundRobinScheduler();
-
-            scheduler.LoadLeague(newLeagueAdapter);
-
-            List<ITeam> listOfTeamsAdapter = new List<ITeam>();
-
-            foreach(Teams team in targetTeamsListBox.Items)
-            {
-                TeamEntityToLibraryAdapter teamAdapter = new TeamEntityToLibraryAdapter();
-                teamAdapter.Adapt(team);
-                listOfTeamsAdapter.Add(teamAdapter);
-            }
-
-            scheduler.LoadTeams(listOfTeamsAdapter);
-
-            scheduler.YearOfStart = yearOfStart;
-
-            scheduler.GenerateSchedule();
-
-            List<IMatch> listOfMatchesFromAlgorithm = scheduler.GetSchedule();
-
-            List<Matches> listOfMatchesEntities = new List<Matches>();
-
-            Matches m = new Matches();
-            m.HomeTeamId = 3;
-            m.AwayTeamId = 5;
-            m.LeagueId = 15;
-            Context.Matches.Add(m);
-            /*
-            foreach(IMatch match in listOfMatchesFromAlgorithm)
-            {
-                MatchLibraryToEntityAdapter matchAdapter = new MatchLibraryToEntityAdapter();
-                matchAdapter.Adapt(match);
-                matchAdapter.LeagueId = newLeagueEntity.Id;
-
-                Matches adaptedMatch = (Matches)matchAdapter;
-
-                Context.Matches.Add(adaptedMatch);
-            }
-            Context.Leagues.Add(newLeagueEntity);*/
-            Context.SaveChanges();
+            if (scheduleGenerated)
+                MessageBox.Show("League sucessfully generated.");
+            else
+                MessageBox.Show("League not generated.");
         }
     }
 }
