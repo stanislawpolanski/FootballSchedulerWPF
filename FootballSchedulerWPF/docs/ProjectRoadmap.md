@@ -38,8 +38,8 @@ FootballSchedulerWPF (this)
 + [x] Save changes
 + [x] Binding standings
 + [x] Entity-library adapters
-    + [x] Adapters dev
-    + [x] ~~Adapters factory~~ (abandoned for now)
+    + [x] Adapters developement
+    + ~~Adapters factory~~ (abandoned for now)
 + [x] ViewModels stubs
     + [x] Main Window 
     + [x] Standings
@@ -49,10 +49,10 @@ FootballSchedulerWPF (this)
     + [x] Fields and buttons created
     + [x] Generate new league view model
     + [x] Fields and buttons programmed to generate new league
-+ [ ] Entity data validation?
-+ [ ] Command logging
-+ [ ] Testing
-+ [ ] Final compilation
++ [x] Entity data validation?
++ ~~Command logging~~ (useless at this stage)
++ [x] Testing
++ [x] Final compilation
 + [ ] Readme (overview)
 + [ ] Code clean-up
     + [ ] Remove unnecessary usings
@@ -61,6 +61,7 @@ FootballSchedulerWPF (this)
 
 ## Project evaluation
 
++ [ ] Conclusions forfuture projects 
 + [ ] Comparison of the PID to the result
 + [ ] Possible directions of developement?
 + [ ] GIS app to read the team's regions from shp using cities names

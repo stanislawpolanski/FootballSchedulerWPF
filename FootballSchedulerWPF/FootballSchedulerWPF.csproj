@@ -80,6 +80,7 @@
     <Compile Include="EntitiesToLibraryAdapters\MatchEntityToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\MatchLibraryToEntityAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\TeamEntityToLibraryAdapter.cs" />
+    <Compile Include="FootballSchedulerDBContext_Extensions\FootballSchedulerDBContext_ValidateEntityOverride.cs" />
     <Compile Include="FootballSchedulerDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +161,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="DataSources\Districts3.datasource" />
+    <None Include="docs\ConclusionsForFutureProjects.md" />
     <None Include="docs\ProjectInitiationDocument.md" />
     <None Include="docs\ProjectRoadmap.md" />
     <EntityDeploy Include="FootballSchedulerDBModel.edmx">
