@@ -53,7 +53,7 @@ FootballSchedulerWPF (this)
 + ~~Command logging~~ (useless at this stage)
 + [x] Testing
 + [x] Final compilation
-+ [ ] Readme (overview)
++ [x] Readme (overview)
 + [ ] Code clean-up
     + [ ] Remove unnecessary usings
 + [ ] Release
