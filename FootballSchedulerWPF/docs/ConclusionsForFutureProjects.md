@@ -1,5 +1,5 @@
 ﻿# Conclusions for future projects
 
 - design folders before coding
-- implement logging asap
+- implement SQL logging asap
 - study SOLID

@@ -61,7 +61,7 @@ FootballSchedulerWPF (this)
 
 ## Project evaluation
 
-+ [ ] Conclusions for future projects 
-+ [ ] Comparison of the PID to the result
-+ [ ] Possible directions of developement?
-+ [ ] GIS app to read the team's regions from shp using cities names
++ [x] Conclusions for future projects 
++ [x] Comparison of the PID to the result
++ [x] Possible directions of developement?
++ [x] GIS app to read the team's regions from shp using cities names

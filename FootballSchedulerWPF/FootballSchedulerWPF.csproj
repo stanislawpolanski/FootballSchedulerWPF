@@ -161,6 +161,7 @@
     </EmbeddedResource>
     <None Include="DataSources\Districts3.datasource" />
     <None Include="docs\ConclusionsForFutureProjects.md" />
+    <None Include="docs\ProjectEvaluation.md" />
     <None Include="docs\ProjectInitiationDocument.md" />
     <None Include="docs\ProjectRoadmap.md" />
     <EntityDeploy Include="FootballSchedulerDBModel.edmx">
