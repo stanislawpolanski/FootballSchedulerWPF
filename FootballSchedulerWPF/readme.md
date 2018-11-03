@@ -5,6 +5,7 @@ Project depends on following solutions:
 - [Database](https://github.com/stanislawpolanski/FootballSchedulerDB)
 - [Computation library](https://github.com/stanislawpolanski/FootballSchedulerDLL)
 ## What is in here
+- [Documents](https://github.com/stanislawpolanski/FootballSchedulerWPF/tree/master/FootballSchedulerWPF/docs)
 - [Converters](https://github.com/stanislawpolanski/FootballSchedulerWPF/tree/master/FootballSchedulerWPF/Converters) - IValueConverter classes for converting data due to WPF needs.
 - [Adapters](https://github.com/stanislawpolanski/FootballSchedulerWPF/tree/master/FootballSchedulerWPF/EntitiesToLibraryAdapters) - Adapters to convert EF models to computation library classes.
 - [DBContext extensions](https://github.com/stanislawpolanski/FootballSchedulerWPF/tree/master/FootballSchedulerWPF/FootballSchedulerDBContext_Extensions) - ValidateEntity() override.
