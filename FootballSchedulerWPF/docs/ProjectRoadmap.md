@@ -55,13 +55,13 @@ FootballSchedulerWPF (this)
 + [x] Final compilation
 + [x] Readme (overview)
 + [ ] Code clean-up
-    + [ ] Remove unnecessary usings
-+ [ ] Release
-+ [ ] Whole project overview (readme)
+    + [x] Remove unnecessary usings
++ [x] Release
++ [x] Whole project overview (readme)
 
 ## Project evaluation
 
-+ [ ] Conclusions forfuture projects 
++ [ ] Conclusions for future projects 
 + [ ] Comparison of the PID to the result
 + [ ] Possible directions of developement?
 + [ ] GIS app to read the team's regions from shp using cities names

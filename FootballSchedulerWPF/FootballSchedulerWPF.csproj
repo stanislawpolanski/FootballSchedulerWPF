@@ -78,7 +78,6 @@
     <Compile Include="EntitiesToLibraryAdapters\IEntitiesToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\LeagueEntityToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\MatchEntityToLibraryAdapter.cs" />
-    <Compile Include="EntitiesToLibraryAdapters\MatchLibraryToEntityAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\TeamEntityToLibraryAdapter.cs" />
     <Compile Include="FootballSchedulerDBContext_Extensions\FootballSchedulerDBContext_ValidateEntityOverride.cs" />
     <Compile Include="FootballSchedulerDBModel.cs">
