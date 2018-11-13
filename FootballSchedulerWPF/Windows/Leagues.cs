@@ -7,24 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballSchedulerWPF
+namespace FootballSchedulerWPF.Windows
 {
     using System;
     using System.Collections.ObjectModel;
     
-    public partial class Districts
+    public partial class Leagues
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Districts()
+        public Leagues()
         {
-            this.Teams = new ObservableCollection<Teams>();
+            this.Matches = new ObservableCollection<Matches>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> ParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Teams> Teams { get; set; }
+        public virtual ObservableCollection<Matches> Matches { get; set; }
     }
 }

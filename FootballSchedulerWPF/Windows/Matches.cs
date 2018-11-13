@@ -7,18 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballSchedulerWPF
+namespace FootballSchedulerWPF.Windows
 {
     using System;
+    using System.Collections.ObjectModel;
     
-    public partial class GetMatchesByLeagueId_Result
+    public partial class Matches
     {
-        public Nullable<System.DateTime> TimeOfPlay { get; set; }
-        public Nullable<int> HomeTeamId { get; set; }
-        public Nullable<int> AwayTeamId { get; set; }
+        public int Id { get; set; }
+        public int LeagueId { get; set; }
+        public System.DateTime TimeOfPlay { get; set; }
+        public int HomeTeamId { get; set; }
+        public int AwayTeamId { get; set; }
         public Nullable<int> HomeScore { get; set; }
         public Nullable<int> AwayScore { get; set; }
-        public string HomeTeamName { get; set; }
-        public string AwayTeamName { get; set; }
+    
+        public virtual Leagues Leagues { get; set; }
+        public virtual Teams Teams { get; set; }
+        public virtual Teams Teams1 { get; set; }
     }
 }

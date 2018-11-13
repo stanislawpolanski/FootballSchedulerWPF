@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FootballSchedulerWPF
+namespace FootballSchedulerWPF.Windows
 {
     using System;
     

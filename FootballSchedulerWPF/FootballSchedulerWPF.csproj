@@ -68,10 +68,10 @@
     </ApplicationDefinition>
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\RowToRowNumberConverter.cs" />
-    <Compile Include="C__RefactorLog.cs">
+    <Compile Include="Windows\C__RefactorLog.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Districts.cs">
+    <Compile Include="Windows\Districts.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntitiesToLibraryAdapters\FactoryEntitiesToAdapters.cs" />
@@ -80,35 +80,35 @@
     <Compile Include="EntitiesToLibraryAdapters\MatchEntityToLibraryAdapter.cs" />
     <Compile Include="EntitiesToLibraryAdapters\TeamEntityToLibraryAdapter.cs" />
     <Compile Include="FootballSchedulerDBContext_Extensions\FootballSchedulerDBContext_ValidateEntityOverride.cs" />
-    <Compile Include="FootballSchedulerDBModel.cs">
+    <Compile Include="Windows\FootballSchedulerDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GenerateNewLeagueWindow.xaml.cs">
+    <Compile Include="Windows\GenerateNewLeagueWindow.xaml.cs">
       <DependentUpon>GenerateNewLeagueWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Leagues.cs">
+    <Compile Include="Windows\Leagues.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Matches.cs">
+    <Compile Include="Windows\Matches.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="StandingsViewWindow.xaml.cs">
+    <Compile Include="Windows\StandingsViewWindow.xaml.cs">
       <DependentUpon>StandingsViewWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Teams.cs">
+    <Compile Include="Windows\Teams.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\GenerateNewLeagueViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\StandingsViewViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Page Include="GenerateNewLeagueWindow.xaml">
+    <Page Include="Windows\GenerateNewLeagueWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -116,27 +116,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FootballSchedulerDBModel.Context.cs">
+    <Compile Include="Windows\FootballSchedulerDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballSchedulerDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="FootballSchedulerDBModel.Designer.cs">
+    <Compile Include="Windows\FootballSchedulerDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="GetLeagueStandingsByLeagueId_Result.cs">
+    <Compile Include="Windows\GetLeagueStandingsByLeagueId_Result.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetMatchesByLeagueId_Result.cs">
+    <Compile Include="Windows\GetMatchesByLeagueId_Result.cs">
       <DependentUpon>FootballSchedulerDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="StandingsViewWindow.xaml">
+    <Page Include="Windows\StandingsViewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,13 +164,13 @@
     <None Include="docs\ProjectEvaluation.md" />
     <None Include="docs\ProjectInitiationDocument.md" />
     <None Include="docs\ProjectRoadmap.md" />
-    <EntityDeploy Include="FootballSchedulerDBModel.edmx">
+    <EntityDeploy Include="Windows\FootballSchedulerDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FootballSchedulerDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="docs\DesiredWindowFunctionality.md" />
     <None Include="DataSources\FootballSchedulerDBContext3.datasource" />
-    <None Include="FootballSchedulerDBModel.edmx.diagram">
+    <None Include="Windows\FootballSchedulerDBModel.edmx.diagram">
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
     </None>
     <None Include="DataSources\GetLeagueStandingsByLeagueId_Result3.datasource" />
@@ -189,12 +189,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FootballSchedulerDBModel.Context.tt">
+    <Content Include="Windows\FootballSchedulerDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
       <LastGenOutput>FootballSchedulerDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="FootballSchedulerDBModel.tt">
+    <Content Include="Windows\FootballSchedulerDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FootballSchedulerDBModel.edmx</DependentUpon>
       <LastGenOutput>FootballSchedulerDBModel.cs</LastGenOutput>
