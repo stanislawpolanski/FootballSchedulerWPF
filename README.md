@@ -1,5 +1,5 @@
 ﻿# Football scheduler
-Project made for training purposes.
+Project made for training purposes, using Entity Framework and WPF.
 ## Dependencies
 Project depends on following solutions:
 - [Database](https://github.com/stanislawpolanski/FootballSchedulerDB)
